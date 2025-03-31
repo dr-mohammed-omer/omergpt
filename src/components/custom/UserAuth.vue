@@ -98,9 +98,7 @@ async function handleRegister() {
   }
 }
 
-function handleClose() {
-  emit('update:show', false)
-}
+
 </script>
 
 <template>
