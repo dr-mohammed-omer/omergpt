@@ -6,7 +6,13 @@ import { useUserStore } from '@/store/modules/user'
 const userStore = useUserStore()
 const message = useMessage()
 
-const chatHistory = ref([])
+interface ChatHistoryItem {
+  id: number
+  prompt: string
+  created_at: string
+}
+
+const chatHistory = ref<ChatHistoryItem[]>([])
 const loading = ref(false)
 
 async function fetchChatHistory() {

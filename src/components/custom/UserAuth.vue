@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { NCard, NForm, NFormItem, NInput, NButton, NTabs, NTabPane, useMessage, NModal } from 'naive-ui'
+
+
 import { useUserStore } from '@/store/modules/user'
 
 const props = defineProps<{
@@ -8,6 +10,10 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits(['update:show', 'login-success'])
+
+const handleClose = () => {
+  emit('update:show', false)
+}
 
 const userStore = useUserStore()
 const message = useMessage()
