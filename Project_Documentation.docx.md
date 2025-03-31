@@ -13,6 +13,39 @@ The OmerGPT Web Application is a modern, full-stack web application that provide
 
 The application features a Vue.js-based frontend with a clean, responsive user interface, backed by an Express.js server that handles API requests and authentication. It incorporates features such as real-time chat interactions, user authentication, conversation history management, and theme customization.
 
+#### 1.1.1 Dual Model Support
+
+The application supports two distinct methods for interacting with ChatGPT:
+
+1. **ChatGPT API (gpt-3.5-turbo-0301)**
+   - Paid service requiring OpenAI API Key
+   - High reliability and stability
+   - Consistent but relatively basic responses
+   - Direct integration with OpenAI's official API
+
+2. **ChatGPT Unofficial Proxy API (Web AccessToken)**
+   - Free to use
+   - Moderate reliability (dependent on third-party servers)
+   - More advanced and contextually aware responses
+   - Uses unofficial proxy to access ChatGPT's backend API
+
+#### 1.1.2 Implementation Considerations
+
+**API Selection Guidelines:**
+- The OpenAI API method is recommended as the primary choice
+- For users in regions with restricted access, a proper proxy setup is required
+- Public proxies should be avoided for security reasons
+
+**Security Considerations:**
+- When using the accessToken method, be aware that tokens are exposed to third-party proxies
+- For public deployments, implement access control using AUTH_SECRET_KEY
+- Modify the index.html title to prevent unwanted keyword searches
+
+**Configuration:**
+- Environment setup is managed through service/.env file
+- OPENAI_API_KEY takes precedence when both API methods are configured
+- Proxy settings can be customized for different network environments
+
 [Insert diagram of System Overview - High Level Architecture]
 
 ### 1.2 Objective
