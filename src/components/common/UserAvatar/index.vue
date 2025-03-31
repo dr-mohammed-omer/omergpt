@@ -1,17 +1,28 @@
 <script setup lang='ts'>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { NAvatar } from 'naive-ui'
 import { useUserStore } from '@/store'
 import defaultAvatar from '@/assets/avatar.jpg'
 import { isString } from '@/utils/is'
+import UserAuth from '@/components/custom/UserAuth.vue'
 
 const userStore = useUserStore()
+const showLoginModal = ref(false)
 
 const userInfo = computed(() => userStore.userInfo)
+
+function handleLoginClick() {
+  showLoginModal.value = true
+}
+
+function handleLoginSuccess() {
+  showLoginModal.value = false
+}
 </script>
 
 <template>
-  <div class="flex items-center overflow-hidden">
+  <div class="flex items-center overflow-hidden cursor-pointer" @click="handleLoginClick">
+    <UserAuth v-if="showLoginModal" v-model:show="showLoginModal" @login-success="handleLoginSuccess" />
     <div class="w-10 h-10 overflow-hidden rounded-full shrink-0">
       <template v-if="isString(userInfo.avatar) && userInfo.avatar.length > 0">
         <NAvatar
